@@ -4,7 +4,6 @@ import {
   type DefaultSession,
   type NextAuthOptions,
 } from "next-auth";
-import GithubProvider from "next-auth/providers/github";
 import EmailProvider from "next-auth/providers/email";
 
 import { env } from "~/env";
@@ -49,19 +48,6 @@ export const authOptions: NextAuthOptions = {
   },
   adapter: PrismaAdapter(db),
   providers: [
-    GithubProvider({
-      clientId: env.GITHUB_CLIENT_ID,
-      clientSecret: env.GITHUB_CLIENT_SECRET,
-    }),
-    /**
-     * ...add more providers here.
-     *
-     * Most other providers require a bit more work than the GITHUB provider. For example, the
-     * GitHub provider requires you to add the `refresh_token_expires_in` field to the Account
-     * model. Refer to the NextAuth.js docs for the provider you want to use. Example:
-     *
-     * @see https://next-auth.js.org/providers/github
-     */
     EmailProvider({
       server: env.EMAIL_SERVER,
       from: env.EMAIL_FROM,
