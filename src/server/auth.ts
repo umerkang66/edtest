@@ -37,6 +37,7 @@ declare module "next-auth" {
  */
 export const authOptions: NextAuthOptions = {
   callbacks: {
+    // because of the next-auth id bug we have to use this hack
     session: ({ session, user }) => ({
       ...session,
       user: {
